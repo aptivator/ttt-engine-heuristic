@@ -2,7 +2,7 @@
 
 ### Introduction
 
-The engine implements a heuristic tic-tac-toe strategy and  can mimic a perfect 
+The engine implements a heuristic tic-tac-toe strategy and can mimic a perfect 
 player or various levels of an imperfect player.  The strategy was "borrowed"
 and slightly modified from an existing [approach]().  The library was written 
 for educational purposes and its construction is described in detail in my book 
@@ -37,10 +37,10 @@ allowed.
 * An _optional_ **random** flag to indicate if a move is to be picked stochastically 
 out of the available best moves.
 
-* An _optional_ **strength** parameter to indicate at what level of "competence" the engine
-is to perform.  A value of `1` sets the engine to play randomly.  Increasing
-this setting increases the library's performance all the way to a perfect player 
-(a value of `9`, which is also default).
+* An _optional_ **strength** parameter to indicate at what level of "competence"
+the engine is to perform.  A value of `0` sets the engine to play randomly.
+Increasing this setting increases the library's performance all the way to a
+perfect player (a value of `10`, which is also default).
 
 ##### Engine Inputs Example
 
@@ -65,7 +65,7 @@ let play = ttt(board, 'x');
 play = ttt(board, 'x', false);
 
 /* select a random move at the lowest level of performance */
-play = ttt(board, 'x', true, 1);
+play = ttt(board, 'x', true, 0);
 ```
 
 ##### Engine Output
@@ -73,14 +73,15 @@ play = ttt(board, 'x', true, 1);
 The library returns an object with the following possible properties:
 
 * `ch` - a character that is to be placed (either `x` or `o`)
-* `move` - an index of an 9-cell board array at which a character is to be 
-positioned
-* `win` - a 3-cell array of indices that represents a win (e.g., `[0, 1, 2]`, `[0, 3, 6]`)
+* `move` - an index of an 9-cell board array at which a character
+  is to be positioned
+* `win` - a 3-cell array of indices that represents a win
+  (e.g., `[0, 1, 2]`, `[0, 3, 6]`)
 * `draw` - a boolean flag indicating a draw
 
 ##### Examples
 
-The following cases exemplify the type of values included in the engine's output. 
+The following cases highlight the type of values included in the engine's output. 
 The information provided in a play selection should free a UI or other interface 
 from tracking a game state.
 
@@ -122,7 +123,7 @@ let play = ttt(board, 'x', false);
 ```
 
 3. Finds an opponent's win.  (There is no need to include `move` property in 
-the result.  `ch` is included in case UI may need that).
+the result.  `ch` is included in case a UI may need that).
 
 ```js
 let board = [
