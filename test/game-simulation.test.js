@@ -13,7 +13,7 @@ describe('two-player game simulation', () => {
       results.imperfect[level] = {wins: 0};
       results.perfect[level] = {wins: 0};
       
-      for(let game = 0; game < 200; game++) {
+      for(let game = 0; game < 100; game++) {
         let startingPoint = pickRandomElement([0, 1]);
 
         let board = [

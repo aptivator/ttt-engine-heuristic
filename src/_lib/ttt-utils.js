@@ -20,8 +20,8 @@ export function findMoveByType(board, ch, moveType, random, preferSideWins = fal
           }
         }
       });
-      
-      if(movesInOnes.size && preferSideWins) {
+
+      if(preferSideWins && movesInOnes.size) {
         break;
       }
     }
