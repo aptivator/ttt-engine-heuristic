@@ -42,7 +42,11 @@ describe('two-player game simulation', () => {
     }
 
     expect(results.perfect[0].wins).to.be.above(results.imperfect[0].wins);
+    expect(results.imperfect[0].wins).to.equal(0);
+
     expect(results.perfect[5].wins).to.be.above(results.imperfect[5].wins);
+    expect(results.imperfect[5].wins).to.equal(0);
+
     expect(results.perfect[10].wins).to.equal(0);
     expect(results.imperfect[10].wins).to.equal(0);
   });

@@ -1,6 +1,9 @@
-import {expect}              from 'chai';
+import chai, {expect}        from 'chai';
+import deepEqualInAnyOrder   from 'deep-equal-in-any-order';
 import {ttt}                 from '../src';
 import {generateUniqueMoves} from './_fixtures/generate-unique-moves';
+
+chai.use(deepEqualInAnyOrder);
 
 describe('ttt() engine entrypoint', () => {
   it('accepts board as a string', () => {
@@ -17,7 +20,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'o');
-    expect(move).to.deep.equal({win: [0, 4, 8], ch: 'o'});
+    expect(move).to.eql({win: [0, 4, 8], ch: 'o'});
   });
  
   it('diagnoses an existing draw', () => {
@@ -28,7 +31,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'x');
-    expect(move).to.deep.equal({ch: 'x', draw: true});
+    expect(move).to.eql({ch: 'x', draw: true});
   });  
 
   it('picks a winning move', () => {
@@ -39,7 +42,7 @@ describe('ttt() engine entrypoint', () => {
     ];    
     
     let move = ttt(board, 'o');
-    expect(move).to.deep.equal({move: 8, ch: 'o', win: [0, 4, 8]});
+    expect(move).to.eql({move: 8, ch: 'o', win: [0, 4, 8]});
   });
 
   it('detects a draw', () => {
@@ -50,7 +53,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'o');
-    expect(move).to.deep.equal({ch: 'o', draw: true, move: 8});
+    expect(move).to.eql({ch: 'o', draw: true, move: 8});
   });
     
   it(`it blocks an opponent's winning move`, () => {
@@ -61,7 +64,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'x');
-    expect(move).to.deep.equal({move: 8, ch: 'x'});
+    expect(move).to.eql({move: 8, ch: 'x'});
   });
   
   it('finds a forks and picks a random fork', () => {
@@ -72,7 +75,7 @@ describe('ttt() engine entrypoint', () => {
     ];    
 
     let moves = generateUniqueMoves(ttt, 10, board, 'o');
-    expect(moves).to.have.members([1, 2]);
+    expect(moves).to.deep.equalInAnyOrder([1, 2]);
   });
   
   it('blocks the only fork directly', () => {
@@ -83,7 +86,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'o');
-    expect(move).to.deep.equal({move: 6, ch: 'o'});
+    expect(move).to.eql({move: 6, ch: 'o'});
   });
   
   it('plays corner when opponent has non-opposite two forks', () => {
@@ -94,7 +97,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'x');
-    expect(move).to.deep.equal({move: 2, ch: 'x'});
+    expect(move).to.eql({move: 2, ch: 'x'});
   });
   
   it('attacks from the side when opponent has opposite corner forks', () => {
@@ -104,8 +107,8 @@ describe('ttt() engine entrypoint', () => {
       null, null, 'o'
     ];    
     
-    let moves = generateUniqueMoves(ttt, 20, board, 'x');
-    expect(moves).to.have.members([1, 3, 5, 7]);
+    let moves = generateUniqueMoves(ttt, 50, board, 'x');
+    expect(moves).to.deep.equalInAnyOrder([1, 3, 5, 7]);
   });
   
   it('plays corner when opponent has more than 2 forks', () => {
@@ -116,7 +119,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let moves = generateUniqueMoves(ttt, 10, board, 'o');
-    expect(moves).to.have.members([2, 6]);
+    expect(moves).to.deep.equalInAnyOrder([2, 6]);
   });
   
   it('picks center when opponent has picked the first move', () => {
@@ -127,7 +130,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'o');
-    expect(move).to.deep.equal({move: 4, ch: 'o'});
+    expect(move).to.eql({move: 4, ch: 'o'});
   });
   
   it('mirrors an already picked corner if opponent has center', () => {
@@ -138,7 +141,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let move = ttt(board, 'x');
-    expect(move).to.deep.equal({move: 8, ch: 'x'});
+    expect(move).to.eql({move: 8, ch: 'x'});
   });
   
   it('plays a random corner when the board is empty', () => {
@@ -149,7 +152,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let moves = generateUniqueMoves(ttt, 30, board, 'x');
-    expect(moves).to.have.members([0, 2, 6, 8]);
+    expect(moves).to.deep.equalInAnyOrder([0, 2, 6, 8]);
   });
   
   it('selects corners of potential side wins', () => {
@@ -160,7 +163,7 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let moves = generateUniqueMoves(ttt, 10, board, 'x');
-    expect(moves).to.have.members([2, 6]);    
+    expect(moves).to.deep.equalInAnyOrder([2, 6]);    
   });
   
   it('chooses a random side when nothing else is available', () => {
@@ -171,7 +174,7 @@ describe('ttt() engine entrypoint', () => {
     ];
 
     let moves = generateUniqueMoves(ttt, 10, board, 'x');
-    expect(moves.sort()).to.eql([1, 7]);
+    expect(moves).to.deep.equalInAnyOrder([1, 7]);
   });
 
   it('selects the same side when nothing else is available while operating non-randomly', () => {
@@ -193,7 +196,7 @@ describe('ttt() engine entrypoint', () => {
     ];
 
     let moves = generateUniqueMoves(ttt, 100, board, 'x', true, -10);
-    expect(moves.sort()).to.eql([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    expect(moves).to.deep.equalInAnyOrder([0, 1, 2, 3, 4, 5, 6, 7, 8]);
   });
 
   it('sets level to 10 when it is above 10', () => {
@@ -204,6 +207,6 @@ describe('ttt() engine entrypoint', () => {
     ];
     
     let moves = generateUniqueMoves(ttt, 30, board, 'x', true, 20);
-    expect(moves).to.have.members([0, 2, 6, 8]);
+    expect(moves).to.deep.equalInAnyOrder([0, 2, 6, 8]);
   });
 });
