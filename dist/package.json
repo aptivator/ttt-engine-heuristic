@@ -1,0 +1,11 @@
+{
+  "name": "ttt-engine-heuristic",
+  "version": "0.0.1",
+  "description": "tic-tac-toe heuristic game engine",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aptivator/ttt-engine-heuristic.git"
+  },
+  "main": "index.js",
+  "module": "index.es.js"
+}
