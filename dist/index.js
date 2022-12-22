@@ -183,7 +183,7 @@
               _iterator.f();
             }
           });
-          if (movesInOnes.size && preferSideWins) {
+          if (preferSideWins && movesInOnes.size) {
             break;
           }
         }

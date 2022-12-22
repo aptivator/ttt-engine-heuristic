@@ -177,7 +177,7 @@ function findMoveByType(board, ch, moveType, random) {
             _iterator.f();
           }
         });
-        if (movesInOnes.size && preferSideWins) {
+        if (preferSideWins && movesInOnes.size) {
           break;
         }
       }

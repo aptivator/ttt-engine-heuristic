@@ -163,7 +163,7 @@ let play = ttt(board, 'x');
 ```
 
 5. Diagnoses a draw already played by an opponent. (There is no need to include 
-`move` and `ch` variables).
+`move` variable).
 
 ```js
 let board = [
@@ -175,6 +175,7 @@ let board = [
 let play = ttt(board, 'x');
 /*
   play = {
+    ch: 'x',
     draw: true
   };
 */
