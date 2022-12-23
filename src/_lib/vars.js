@@ -2,8 +2,7 @@ export const CENTER = 4;
 
 export const moveTypes = {
   corners: [0, 2, 6, 8],
-  sides: [1, 3, 5, 7],
-  center: [CENTER]
+  sides: [1, 3, 5, 7]
 };
 
 export const opponent = {

@@ -105,8 +105,8 @@ function blockForks(board, ch, random) {
   }
 }
 
-function playCenter(board, ch) {
-  let gridWithoutNulls = board.filter(ch => ch);
+function playCenter(board) {
+  let gridWithoutNulls = board.filter((ch) => ch);
 
   if(gridWithoutNulls.length === 1 && !board[CENTER]) {
     return CENTER;

@@ -12,14 +12,14 @@ export function findMoveByType(board, ch, moveType, random, preferSideWins = fal
     let movesInOnes = new Set();
     
     for(let potentialWins of [sidePotentialWins, nonSidePotentialWins]) {
-      potentialWins.forEach((potentialWin) => {
+      for(let potentialWin of potentialWins) {
         for(let cell of typeMoves) {
           if(potentialWin.blanks.includes(cell)) {
             movesInOnes.add(cell);
             break;
           }
         }
-      });
+      }
 
       if(preferSideWins && movesInOnes.size) {
         break;
