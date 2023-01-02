@@ -4,10 +4,8 @@
 
 The engine implements a heuristic tic-tac-toe strategy and can mimic a perfect 
 player or various levels of an imperfect player.  The strategy was "borrowed"
-and slightly modified from an existing [approach]().  The library was written 
-for educational purposes and its construction is described in detail in my book 
-[JavaScript by Application: Tic-Tac-Toe 9 Ways]().  The code base for the engine
-is [js-seed-library](https://github.com/aptivator/js-library-seed).
+and slightly modified from an existing [approach]().  The foundaitonal code
+base for the engine is [js-seed-library](https://github.com/aptivator/js-library-seed).
 
 ### Installation
 
